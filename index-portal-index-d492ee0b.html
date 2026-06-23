@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MK体育 · 轻量导航</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fafaf9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #2e2e2e;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* 窄标题层级 */
+    h1, h2, h3, h4 {
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: #1e1e1e;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 450;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin: 2.2rem 0 0.8rem;
+      border-bottom: 1px solid #e5e4e1;
+      padding-bottom: 0.35rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    a {
+      color: #1c6f5c;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border 0.2s;
+    }
+
+    a:hover {
+      border-bottom-color: #1c6f5c;
+    }
+
+    /* 顶部导航 */
+    .top-nav {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.6rem 0 1.2rem;
+      border-bottom: 1px solid #eae8e5;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 0.3rem 1rem;
+    }
+
+    .top-nav .brand {
+      font-size: 1.3rem;
+      font-weight: 480;
+      color: #1c6f5c;
+      letter-spacing: -0.01em;
+    }
+
+    .top-nav .brand a {
+      border-bottom: none;
+    }
+
+    .top-nav .tagline {
+      font-size: 0.9rem;
+      color: #6b6a67;
+    }
+
+    .top-nav .tagline span {
+      background: #eae8e5;
+      padding: 0.15rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* 卡片场景模块 */
+    .scene-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin: 1.8rem 0 2rem;
+    }
+
+    .scene-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.4rem 1.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.02);
+      border: 1px solid #ecebe9;
+      transition: box-shadow 0.2s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+
+    .scene-card h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .scene-card h3::before {
+      content: "·";
+      font-weight: 700;
+      color: #1c6f5c;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .scene-card p {
+      margin-bottom: 0.1rem;
+      color: #3d3d3b;
+    }
+
+    .scene-card small {
+      color: #7c7b78;
+      font-size: 0.85rem;
+    }
+
+    /* 常见说明（FAQ 摘要） */
+    .faq-mini {
+      margin: 2.5rem 0 0.5rem;
+    }
+
+    .faq-mini details {
+      border-bottom: 1px solid #eae8e5;
+      padding: 0.75rem 0;
+    }
+
+    .faq-mini details:first-of-type {
+      border-top: 1px solid #eae8e5;
+    }
+
+    .faq-mini summary {
+      font-weight: 470;
+      cursor: pointer;
+      color: #2a2a28;
+      font-size: 0.98rem;
+      padding: 0.2rem 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .faq-mini summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-mini summary::before {
+      content: "▸";
+      color: #1c6f5c;
+      font-size: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .faq-mini details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .faq-mini details p {
+      margin: 0.5rem 0 0.3rem 1.2rem;
+      font-size: 0.92rem;
+      color: #4e4e4b;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      margin-top: 2.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #eae8e5;
+      font-size: 0.85rem;
+      color: #7c7b78;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .footer-note a {
+      color: #7c7b78;
+      border-bottom-color: #d0cfcb;
+    }
+
+    .footer-note a:hover {
+      color: #1c6f5c;
+      border-bottom-color: #1c6f5c;
+    }
+
+    /* 响应式 */
+    @media (max-width: 500px) {
+      .page {
+        padding: 1.2rem 1rem 2rem;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .scene-card {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+      }
+    }
+
+    /* 保持链接纯净 */
+    .inline-link {
+      border-bottom: 1px solid #d0cfcb;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+      <div class="brand">
+        <a href="https://index-portal-mksports.com">MK体育</a>
+      </div>
+      <div class="tagline">
+        <span>轻量导航 · 常回来看看</span>
+      </div>
+    </nav>
+
+    <!-- 核心介绍 -->
+    <section>
+      <h1>随时回来，不迷路</h1>
+      <p style="font-size: 1.05rem; color: #3d3d3a;">
+        如果曾到过 <a href="https://index-portal-mksports.com">MK体育</a> 并觉得有收获，不妨把这里当作一个安静的锚点。 
+        不需要记住复杂的地址，不需要每次重新搜索——只要收藏这一页，就能直接回到熟悉的地方。
+      </p>
+      <p>
+        一个稳定的索引位置，可以省去许多重复查找的精力。页面的内容会保持简洁，也适合在需要时快速打开。
+      </p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <section>
+      <h2>三个常用场景</h2>
+      <div class="scene-grid">
+        <div class="scene-card">
+          <h3>再次访问</h3>
+          <p>把链接留在浏览器书签或者备忘录里，下次想看看时，点开就是。不用每次重新输入或搜寻，也减少了走错地址的可能。</p>
+          <small>习惯使用 <a href="https://index-portal-mksports.com">MK体育</a> 后，会发现它和收藏夹里其他站点一样自然。</small>
+        </div>
+        <div class="scene-card">
+          <h3>保持关注</h3>
+          <p>某个平台或服务不频繁更新，但偶尔需要上去看一眼。与其依赖推送，不如养成每隔一段时间自己回来的习惯。</p>
+          <small>把这一页放在手边，想到时点一下，几秒钟就能抵达。</small>
+        </div>
+        <div class="scene-card">
+          <h3>安静索引</h3>
+          <p>不追求花哨的入口，只提供直接的方式。适合那些希望界面干净、减少干扰的使用者。</p>
+          <small>如果你也喜欢极简的导航方式，这里或许正合心意。</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- 常见说明（FAQ 摘要） -->
+    <section class="faq-mini">
+      <h2>一些小说明</h2>
+      <details>
+        <summary>这一页是什么？</summary>
+        <p>这是为 <a href="https://index-portal-mksports.com">MK体育</a> 准备的轻量介绍页，方便你记住入口、了解用途。内容以索引和场景提示为主，不包含引导性推广。</p>
+      </details>
+      <details>
+        <summary>为什么要收藏？</summary>
+        <p>收藏可以让你在任何设备、任何浏览器上快速找回这个地址。尤其适合那些不常更新但偶尔需要访问的页面。</p>
+      </details>
+      <details>
+        <summary>页面会变吗？</summary>
+        <p>这里保持简洁，可能随方向微调，但核心功能——提供指向 <a href="https://index-portal-mksports.com">MK体育</a> 的稳定入口——不会改变。你可以放心收藏。</p>
+      </details>
+      <details>
+        <summary>可以在手机上用吗？</summary>
+        <p>可以。这个页面针对窄屏做了基本适配，在手机浏览器里也能清晰阅读和操作。</p>
+      </details>
+    </section>
+
+    <!-- 温和的收尾 -->
+    <div class="footer-note">
+      <span>持续提供轻量导航</span>
+      <span><a href="https://index-portal-mksports.com">MK体育</a> · 常回来看看</span>
+    </div>
+  </div>
+</body>
+</html>
